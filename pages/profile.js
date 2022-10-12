@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ImageUpload } from '../authent/imageUpload'
 import Link from 'next/link'
 
-export default function ({ CUP, CN, CA })  {
+export default function Profile({ CUP, CN, CA })  {
 
     const initialState = { avatar: '', name: '', password: '', cf_password: '' }
 
