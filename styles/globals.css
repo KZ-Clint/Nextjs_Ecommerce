@@ -15,6 +15,17 @@ a {
   box-sizing: border-box;
 }
 
+img{
+  object-fit: cover;
+  object-position: 0 30%;
+}
+
+@import url("./product.css");
+
+@import url("./profile.css");
+
+@import url("./products_manager.css");
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
