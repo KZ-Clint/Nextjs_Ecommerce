@@ -1,4 +1,4 @@
-import Head from 'next/Head'
+import Head from 'next/head'
 import { useState, useEffect, useContext } from 'react'
 import { DataContext } from '../../store/GlobalState'
 import { updateItem } from '../../store/Actions'
