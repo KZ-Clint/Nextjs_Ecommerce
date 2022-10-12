@@ -69,7 +69,7 @@ export default function Signin ( {token} ) {
                 </div>
 
                 <button type="submit" className="btn btn-dark"> Login </button>
-                <p> You don&#39;t have an account 
+                <p> You don&apos;t have an account 
                     <Link href={"/register"}> 
                       <a  style={ {color: 'crimson' } }  > Register Now </a> 
                     </Link> 
