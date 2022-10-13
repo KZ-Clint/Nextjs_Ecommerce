@@ -2,6 +2,7 @@ import { useEffect, useRef, useContext } from "react"
 import { DataContext } from '../store/GlobalState'
 import axios from 'axios'
 import { updateItem } from '../store/Actions'
+import baseUrl from "./base/baseUrl"
 
 export default function PaypalBtn ({ order }) {
 
@@ -25,7 +26,7 @@ export default function PaypalBtn ({ order }) {
             onApprove: (data, actions) => {
               return actions.order.capture().then(function(orderData) {
                 console.log(orderData)
-                 axios.patch( `http://localhost:5000/order/payment/${order._id}`,  { paymentId: orderData.payer.payer_id } ,{  headers: {
+                 axios.patch( `${baseUrl}/order/payment/${order._id}`,  { paymentId: orderData.payer.payer_id } ,{  headers: {
                   'Authorization': `Bearer ${user.access_token} `
                 }} )
                  .then( (response) => {

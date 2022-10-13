@@ -4,6 +4,7 @@ import { DataContext } from '../store/GlobalState'
 import axios from 'axios'
 import { ImageUpload } from '../authent/imageUpload'
 import Link from 'next/link'
+import baseUrl from '../components/base/baseUrl'
 
 export default function Profile({ CUP, CN, CA })  {
 
@@ -58,7 +59,7 @@ export default function Profile({ CUP, CN, CA })  {
         e.preventDefault()
         let errorObj = validate(data)
         if (Object.keys(errorObj).length === 0){
-           const res = await axios.patch('http://localhost:5000/user/', data ,{  headers: {
+           const res = await axios.patch(`${baseUrl}/user/`, data ,{  headers: {
             'Authorization': `Bearer ${user.access_token} `
           }} )
           console.log(res.data)
@@ -100,7 +101,7 @@ export default function Profile({ CUP, CN, CA })  {
         }
         console.log({media})
         if( media || !avatar ) {
-               const res = await axios.patch('http://localhost:5000/user/avatar', { avatar : avatar ? media[0].url : user.user.avatar  }  ,{  headers: {
+               const res = await axios.patch(`${baseUrl}/user/avatar`, { avatar : avatar ? media[0].url : user.user.avatar  }  ,{  headers: {
                  'Authorization': `Bearer ${user.access_token} `
                }} )
                 console.log({change:res.data})

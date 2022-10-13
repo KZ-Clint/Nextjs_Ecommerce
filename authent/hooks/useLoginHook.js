@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import axios from 'axios'
 import { DataContext } from '../../store/GlobalState'
 import Cookies from 'js-cookie'
+import baseUrl from '../../components/base/baseUrl'
 
 export const useLogin = () => {
     const [ Error, setError ] = useState(null)
@@ -12,7 +13,7 @@ export const useLogin = () => {
     const Login =  (userData ) => {
         dispatch({type: 'NOTIFY', payload: {loading : true} })
     
-          axios.post( 'http://localhost:5000/user/login', userData
+          axios.post( `${baseUrl}/user/login`, userData
         //   {
         //     headers: {
         //         'Authorization': `Bearer ${user.token} `

@@ -3,6 +3,7 @@ import { DataContext } from '../store/GlobalState'
 import { deleteItem } from '../store/Actions'
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import baseUrl from './base/baseUrl'
 
 export default function Modal () {
 
@@ -13,7 +14,7 @@ export default function Modal () {
     const router = useRouter()
 
     const deleteUser = async (item) => {
-        const res = await axios.delete(`http://localhost:5000/user/users/adminusers/delete/${item.id}`, {  headers: {
+        const res = await axios.delete(`${baseUrl}/user/users/adminusers/delete/${item.id}`, {  headers: {
             'Authorization': `Bearer ${user.access_token} `
         }} )
         console.log(res.data.msg)
@@ -21,7 +22,7 @@ export default function Modal () {
 
     const deleteCategory = async (item) => {
         try { 
-        const res = await axios.delete(`http://localhost:5000/categories/${item.id}`, {  headers: {
+        const res = await axios.delete(`${baseUrl}/categories/${item.id}`, {  headers: {
             'Authorization': `Bearer ${user.access_token} `
         }} )
         dispatch( { type: 'NOTIFY', payload:{ success: res.data.msg } } )
@@ -33,7 +34,7 @@ export default function Modal () {
     }
 
     const deleteProduct = async (item) => {
-        const res = await axios.delete(`http://localhost:5000/product/${item.id}`, {  headers: {
+        const res = await axios.delete(`${baseUrl}/product/${item.id}`, {  headers: {
             'Authorization': `Bearer ${user.access_token} `
         }} )
         console.log(res.data.msg)

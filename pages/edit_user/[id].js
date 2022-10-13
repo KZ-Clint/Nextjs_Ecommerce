@@ -4,6 +4,7 @@ import { DataContext } from '../../store/GlobalState'
 import { updateItem } from '../../store/Actions'
 import {useRouter} from 'next/router'
 import axios from 'axios'
+import baseUrl from '../../components/base/baseUrl'
 
 
 
@@ -40,7 +41,7 @@ export default function DetailOrder () {
         if( num % 2 !== 0 ) {
             dispatch({type: 'NOTIFY', payload: {loading: true} })
             try{
-               const res = await axios.patch(`http://localhost:5000/user/users/adminusers/${editUser._id}`,  {role}  , {  headers: {
+               const res = await axios.patch(`${baseUrl}/user/users/adminusers/${editUser._id}`,  {role}  , {  headers: {
                   'Authorization': `Bearer ${user.access_token} `
               }} )
               console.log(res.data)

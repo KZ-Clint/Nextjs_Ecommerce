@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createContext, useReducer, useEffect } from 'react'
+import baseUrl from '../components/base/baseUrl'
 
 export const DataContext = createContext()
 
@@ -77,7 +78,7 @@ export const DataProvider = ({children}) => {
         const getO = async () => {
             if(user.access_token) {
                 try {
-                    const res = await axios.get('http://localhost:5000/order/', {  headers: {
+                    const res = await axios.get(`${baseUrl}/order/`, {  headers: {
                         'Authorization': `Bearer ${user.access_token} `
                       }} )
                    dispatch({type: 'ADD_ORDERS', payload:res.data.orders})
@@ -89,7 +90,7 @@ export const DataProvider = ({children}) => {
                 
                 if( user.user.role === 'admin' ) {
                     try {
-                        const res = await axios.get('http://localhost:5000/user/users', {  headers: {
+                        const res = await axios.get(`${baseUrl}/user/users`, {  headers: {
                             'Authorization': `Bearer ${user.access_token} `
                           }} )
                         dispatch({type: 'ADD_USERS', payload: res.data.users})
@@ -117,7 +118,7 @@ export const DataProvider = ({children}) => {
         const getC = async () => {
             if(user.access_token) {
             try {
-                const res = await axios.get('http://localhost:5000/categories', {  headers: {
+                const res = await axios.get(`${baseUrl}/categories`, {  headers: {
                     'Authorization': `Bearer ${user.access_token} `
                   }} )
                   dispatch({ type:'ADD_CATEGORY', payload: res.data.categories })

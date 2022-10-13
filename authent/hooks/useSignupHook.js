@@ -1,6 +1,7 @@
 import {useState, useContext} from 'react'
 import axios from 'axios'
 import { DataContext } from '../../store/GlobalState'
+import baseUrl from '../../components/base/baseUrl'
 
 export const useSignup = () => {
     const [ formErrors, setFormErrors ] = useState({})
@@ -12,7 +13,7 @@ export const useSignup = () => {
         let errorObj =  validate(userData)
         if (Object.keys(errorObj).length === 0){
     
-          axios.post( 'http://localhost:5000/user/signup', userData)
+          axios.post( `${baseUrl}/user/signup`, userData)
           .then( (response) => {
             console.log(response.data)
             localStorage.setItem('user', JSON.stringify(response.data))

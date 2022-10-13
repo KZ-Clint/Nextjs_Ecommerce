@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import axios from 'axios'
 import { DataContext } from '../../store/GlobalState'
 import { addToCart } from '../../store/Actions'
+import baseUrl from '../../components/base/baseUrl'
 
 export default function DetailProduct () {
 
@@ -18,7 +19,7 @@ export default function DetailProduct () {
 
     useEffect( () => {
         if(router.isReady) {
-            axios.get( `http://localhost:5000/product/${id}` )
+            axios.get( `${baseUrl}/product/${id}` )
         .then( (response)  => {
             console.log(response.data)
             setProduct(response.data.products)

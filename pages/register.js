@@ -7,6 +7,7 @@ import { DataContext } from '../store/GlobalState'
 import { useRouter } from 'next/router'
 
 
+
 export default function Register () {
 
   const initialState = { name: '', email: '', password: '', cf_password: '' }

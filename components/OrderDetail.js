@@ -4,6 +4,7 @@ import PaypalBtn from './paypalBtn'
 import { updateItem } from '../store/Actions'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import baseUrl from './base/baseUrl'
 
 export default function OrderDetail ({ orderDetail, state, dispatch })  {
 
@@ -12,7 +13,7 @@ export default function OrderDetail ({ orderDetail, state, dispatch })  {
 
     const handleDelivered = async (order) => {
         dispatch({ type: 'NOTIFY', payload: { loading: true } })
-        const res = await axios.patch(`http://localhost:5000/order/payment/delivered/${order._id}`,   null  , {  headers: {
+        const res = await axios.patch(`${baseUrl}/order/payment/delivered/${order._id}`,   null  , {  headers: {
         'Authorization': `Bearer ${user.access_token} `
         }} )
         if(!res) {

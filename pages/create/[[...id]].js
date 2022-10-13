@@ -4,6 +4,7 @@ import { ImageUpload } from '../../authent/imageUpload'
 import { DataContext } from '../../store/GlobalState'
 import axios from 'axios'
 import {useRouter} from 'next/router'
+import baseUrl from '../../components/base/baseUrl'
 
 
 export default function ProductsManager ({ CUP, CN, CA }) {
@@ -26,7 +27,7 @@ export default function ProductsManager ({ CUP, CN, CA }) {
         const getP = async () => { 
         if(id) {
            setOnEdit(true)
-           const res = await axios.get(`http://localhost:5000/product/${id}`)
+           const res = await axios.get(`${baseUrl}/product/${id}`)
            console.log(res.data) 
            setProduct(res.data.products)
            setImages(res.data.products.images)
@@ -118,7 +119,7 @@ export default function ProductsManager ({ CUP, CN, CA }) {
         if(onEdit){
             try{
                 console.log('data putttt fetchinggggggggg nowwww')
-                const res = await axios.put(`http://localhost:5000/product/${id}`, {...product, images: [...imgOldURL, ...media] }  ,{  headers: {
+                const res = await axios.put(`${baseUrl}/product/${id}`, {...product, images: [...imgOldURL, ...media] }  ,{  headers: {
                 'Authorization': `Bearer ${user.access_token} `
               }} ) 
     
@@ -133,7 +134,7 @@ export default function ProductsManager ({ CUP, CN, CA }) {
         } else{
             try{
                 console.log('data fetchinggggggggg nowwww')
-                const res = await axios.post('http://localhost:5000/product', {...product, images: [...imgOldURL, ...media] }  ,{  headers: {
+                const res = await axios.post(`${baseUrl}/product`, {...product, images: [...imgOldURL, ...media] }  ,{  headers: {
                 'Authorization': `Bearer ${user.access_token} `
               }} ) 
     

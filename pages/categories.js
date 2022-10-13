@@ -5,6 +5,7 @@ import { updateItem } from '../store/Actions'
 import axios from 'axios'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
+import baseUrl from '../components/base/baseUrl'
 
 export default function Users () {
 
@@ -26,7 +27,7 @@ export default function Users () {
        if(!id) {
        dispatch({ type: 'NOTIFY', payload: {loading: true } })
        try {
-        const res = await axios.post('http://localhost:5000/categories/', { name }  ,{  headers: {
+        const res = await axios.post(`${baseUrl}/categories/`, { name }  ,{  headers: {
             'Authorization': `Bearer ${user.access_token} `
           }} ) 
           dispatch({ type: 'NOTIFY', payload: {loading: false } })
@@ -42,7 +43,7 @@ export default function Users () {
     if(id) {
         dispatch({ type: 'NOTIFY', payload: {loading: true } })
         try {
-         const res = await axios.put(`http://localhost:5000/categories/${id}`, { name }  ,{  headers: {
+         const res = await axios.put(`${baseUrl}/categories/${id}`, { name }  ,{  headers: {
              'Authorization': `Bearer ${user.access_token} `
            }} ) 
            dispatch({ type: 'NOTIFY', payload: {loading: false } })

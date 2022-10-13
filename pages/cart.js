@@ -5,7 +5,7 @@ import {useRouter} from 'next/router'
 import Link from 'next/link'
 import CartItem from '../components/CartItem'
 import axios from 'axios'
-
+import baseUrl from '../components/base/baseUrl'
 
 export default function Cart () {
 
@@ -38,7 +38,7 @@ export default function Cart () {
        let newArr = []
        const update = async () => {  
        for ( const item of cartLocal ) {
-       const res = await axios.get( `http://localhost:5000/product/${item._id}`)
+       const res = await axios.get( `${baseUrl}/product/${item._id}`)
      
             console.log(item._id)
             const {_id, title, images, price, inStock, sold} = res.data.products
@@ -71,7 +71,7 @@ export default function Cart () {
 
      let newCart = []
      for( const item of cart ){
-       const res = await axios.get( `http://localhost:5000/product/${item._id}`)
+       const res = await axios.get( `${baseUrl}/product/${item._id}`)
        if (res.data.inStock - item.quantity >= 0 ) {
         newCart.push(item)
        }
@@ -81,7 +81,7 @@ export default function Cart () {
         return dispatch({ type: 'NOTIFY', payload: {error: ' The product is out of stock or the quantity is insufficient ' } })
      }
 
-     axios.post( 'http://localhost:5000/order/', { address, mobile, cart, total },{  headers: {
+     axios.post( `${baseUrl}/order/`, { address, mobile, cart, total },{  headers: {
       'Authorization': `Bearer ${user.access_token} `
     }} )
      .then( (response) => {

@@ -7,6 +7,7 @@ import ProductItem from '../components/product/ProductItem'
 import {useRouter} from 'next/router'
 import { filterSearch } from '../authent/filterSearch'
 import Filter from '../components/Filter'
+import baseUrl from '../components/base/baseUrl'
 
 export default function Home({products, results}) {
 
@@ -129,7 +130,7 @@ export async function getServerSideProps({query}) {
    const search = query.search || 'all' 
 
    const res = await axios.get(`
-   http://localhost:5000/product?limit=${page * 3}&category=${category}&sort=${sort}&title=${search}` )
+   ${baseUrl}/product?limit=${page * 3}&category=${category}&sort=${sort}&title=${search}` )
 
   return{
     props: {
