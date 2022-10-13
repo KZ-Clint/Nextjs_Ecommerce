@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useContext, useEffect } from 'react'
-import { useLogin } from './hooks/useLoginHook'
+import { useLogin } from '../authent/hooks/useLoginHook'
 import { DataContext } from '../store/GlobalState'
 import { useRouter } from 'next/router'
 

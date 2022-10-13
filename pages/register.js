@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useContext, useEffect } from 'react'
-import { useSignup } from './hooks/useSignupHook'
+import { useSignup } from '../authent/hooks/useSignupHook'
 import { DataContext } from '../store/GlobalState'
 import { useRouter } from 'next/router'
 
