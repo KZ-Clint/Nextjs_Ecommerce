@@ -72,7 +72,7 @@ export default function Cart () {
      let newCart = []
      for( const item of cart ){
        const res = await axios.get( `${baseUrl}/product/${item._id}`)
-       if (res.data.inStock - item.quantity >= 0 ) {
+       if (res.data.products.inStock - item.quantity >= 0 ) {
         newCart.push(item)
        }
      }
